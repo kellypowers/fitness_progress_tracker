@@ -1,9 +1,9 @@
-<div class="flash_message">
+<div id="flash_message">
 <% if flash.include?(:message) %>
 <%= flash[:message] %>
 <% end %>
 </div>
-<h1>Update account information </h1>
+<h2>Update account information </h2>
 <form method="post" action="/users/<%=@user.id%>">
     <input id="hidden" type="hidden" name="_method" value="patch">
     <label>Name: </label>

@@ -1,8 +1,10 @@
+<div id="flashmessage">
 <% if flash.include?(:message) %>
 <%= flash[:message] %>
 <% end %>
-<h1>Log In Below:</h1>
-    <form method="post" action="/sessions">
+</div>
+<h2>Log In Below:</h2>
+    <form class="form" method="post" action="/sessions">
 
         <label for="email">Email: </label>
         <input id="email" type="text" name="user[email]">
@@ -13,3 +15,5 @@
         <input type="submit" value="Log In">
 
     </form>
+    <br>
+    <%# <a class="button" href="/sessions/login">Log in</a> %>

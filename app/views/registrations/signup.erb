@@ -1,14 +1,14 @@
 <% if flash.include?(:message) %>
 <%= flash[:message] %>
 <% end %>
-<h1>Sign Up Below:</h1>
+<h2>Sign Up Below:</h2>
     <form method="post" action="/registrations">
         <label for="name">Name: </label>
         <input id="name" type="text" name="user[name]">
 
         <label for="email">Email: </label>
         <input id="email" type="text" name="user[email]">
-
+    <br> <br>
         <label for="password">Password: </label>
         <input id="password" type="text" name="user[password]">
         Verify Password:
@@ -17,3 +17,5 @@
         <input type="submit" value="Sign Up">
 
     </form>
+    <br>
+     <a class="button" href="/sessions/login">Log in</a>
