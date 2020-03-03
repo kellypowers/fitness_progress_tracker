@@ -1,0 +1,16 @@
+<h2>Edit Goals</h2>
+
+<!-- add content here -->
+<form action="/goals/<%=@goal.id%>" method="post">
+ <input type="hidden" name="_method" value="patch">
+
+    <label for="goal_name">Goal Name</label>
+    <input id="name" type="text" name="goal[name]" value="<%=@goal.name%>">
+
+    <label for="goal_description">Description</label>
+    <input id="goal_desctiption type="textarea" name="goal[description]" value="<%=@goal.description%>">
+
+    <br>
+
+    <input type="submit" value="Edit Goal">
+</form> 

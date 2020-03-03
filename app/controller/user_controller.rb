@@ -24,26 +24,31 @@ class UserController < ApplicationController
     end
 
     get '/sessions/login' do
-        # @user = User.find_by(:username => params[:username])
-        # if user && user.authenticate(params[:password])
-        #     session[:user_id] = user.id 
-        #     redirect "/success"
+        if logged_in? 
+            redirect to "/users/home"
+        elsif @user = User.find_by(:email => params[:email])
+        #@user = User.find_by(:username => params[:username])
+            if user && user.authenticate(params[:password])
+                session[:user_id] = user.id 
+                redirect "/users/home"
+            end
+        else
         # else
         #     redirect "/failure"
         # end
         # # the line of code below render the view page in app/views/sessions/login.erb
         # erb :'sessions/login'
-        binding.pry
-        if logged_in? 
-            redirect to "/users/home"
-        else
+        #binding.pry
+        # if logged_in? 
+        #     redirect to "/users/home"
+        # else
             erb :"/sessions/login"
         end
     end
 
     post '/sessions' do
-        @user = User.find_by(email: params[:email])
-        if @user && @user.authenticate(params[:password])
+        @user = User.find_by(email: params["user"]["email"])
+        if @user && @user.authenticate(params["user"]["password"])
             session[:user_id] = @user.id
             redirect '/users/home'
         else
@@ -58,16 +63,28 @@ class UserController < ApplicationController
     end
 
     get '/users/home' do
-
-        @user = User.find(session[:user_id])
-        #binding.pry
-        erb :'/users/home'
+        if logged_in?
+            #binding.pry
+            @user = User.find(session[:user_id])
+            @goals = @user.goals 
+            #@workouts = Workout.all
+            @workouts = @user.workouts
+            #binding.pry
+            erb :'/users/home'
+        else
+            erb :'/sessions/login'
+        end
     end
 
+
     get '/users/account' do
-        @user = User.find(session[:user_id])
-        binding.pry
-        erb :'/users/account'
+        if logged_in?
+            @user = User.find(session[:user_id])
+            # binding.pry
+            erb :'/users/account'
+        else
+            erb :'/sessions/login'
+        end
     end
 
     get '/users/:id' do 

@@ -1,0 +1,37 @@
+<h2>Edit Workout </h2>
+
+<!-- add content here -->
+<form action="/workouts/<%=@workout.id%>" method="post">
+<input type="hidden" name="_method" value="patch">
+<%# <%@user.workouts.each do |workout|%> %>
+<%@workouts.each do |workout|%>
+<%=workout.type%><input id="workout_<%=workout.id%>" type="checkbox" name="user[workout_ids][]" value="<%=workout.id%>"><%='checked' if @user.workout_ids.include?(workout.id)%>><br>
+    <%end%>
+    <label for="new_workout_type">Workout Type</label>
+    <input id="new_workout_type" type="text" name="workout[type]" value="<%=@workout.type%>">
+
+    <label for="workout_date">Workout Date</label>
+    <input id="workout_date" type="datetime" name="workout[date]" value="<%=@workout.date%>">
+
+    <label for="workout_distance">Distance</label>
+    <input id="workout_distance" type="texintegert" name="workout[distance]" value="<%=@workout.distance%>"> miles
+
+    <label for="workout_time">Time:</label>
+    <input id="workout_time" type="integer" name="workout[time]" value="<%=@workout.time%>"> <%#######if checked minutes<%='checked' if @workout.time.units.include?(workout.id)%>>
+
+    <label for="workout_reps">Reps</label>
+    <input id="workout_reps" type="integer" name="workout[reps]" value="<%=@workout.reps%>">
+
+    <label for="workout_number_reps">Number of reps</label>
+    <input id="workout_number_reps" type="integer" name="workout[number_reps]" value="<%=@workout.number_reps%>">
+
+    <label for="workout_weight">Weight:</label>
+    <input id="workout_weight" type="integer" name="workout[weight]" value="<%=@workout.weight%>">lbs
+
+    <br>
+
+    <input type="submit" value="Edit Workout">
+</form> 
+
+<a class="button" href="/workouts">Workouts</a>
+<a class="button" href="/">Home</a>

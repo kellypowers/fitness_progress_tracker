@@ -1,10 +1,11 @@
 <DOCTYPE! html>
-<html land="en">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fitness Progress Tracker</title>
-  <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
+   <%# <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> %>
+   <link rel="stylesheet" type="text/css" href="../public/stylesheets/style.css">
 </head>
 
 <body>
@@ -12,13 +13,15 @@
     <header>
     <h1>Fitness Progress Tracker</h1>
         <nav>
-            <ul id="topnav">
-                <a href="/"><li>HOME</a></li>
+            <ul id="sidenav">
+                <a href="/users/home"><li>HOME</a></li>
                 <%# <br> %>
                 <a href="/users/account"><li>ACCOUNT</a></li>
                 <%# <br> %>
                 <%if logged_in?%>
                 <a href="/sessions/logout"><li>LOGOUT</a></li>
+                <a href="/workouts/new"><li>ADD NEW WORKOUT</a></li>
+                <a href="/goals/index"><li>GOALS</a></li>
                 <%end%>
             </ul>
         </nav>
