@@ -1,0 +1,19 @@
+<% if flash.include?(:message) %>
+<%= flash[:message] %>
+<% end %>
+<h1>Sign Up Below:</h1>
+    <form method="post" action="/registrations">
+        <label for="name">Name: </label>
+        <input id="name" type="text" name="user[name]">
+
+        <label for="email">Email: </label>
+        <input id="email" type="text" name="user[email]">
+
+        <label for="password">Password: </label>
+        <input id="password" type="text" name="user[password]">
+        Verify Password:
+        <input id="password2" type="text" name="password2">
+
+        <input type="submit" value="Sign Up">
+
+    </form>

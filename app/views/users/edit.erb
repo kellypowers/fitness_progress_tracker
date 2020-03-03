@@ -1,0 +1,24 @@
+<div class="flash_message">
+<% if flash.include?(:message) %>
+<%= flash[:message] %>
+<% end %>
+</div>
+<h1>Update account information </h1>
+<form method="post" action="/users/<%=@user.id%>">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <label>Name: </label>
+        <input type="text" name="name" id="name" value="<%=@user.name%>" >
+    <label>Email:</label>
+        <input type="text" name="email" id="email" value="<%=@user.email%>" >
+    <label>Current password:</label>
+        <input type="password" name="password" id="password" ></p>
+    <label>New password:</label>
+        <input type="password" name="new_password" id="new_password"></p>
+    <label>Verify password:</label>
+        <input type="password" name="new_password2" id="new_password2"></p>
+    <input type="submit" value="Update">
+</form>
+<form method="post" action="/users/<%=@user.id%>">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete My Account">
+</form>

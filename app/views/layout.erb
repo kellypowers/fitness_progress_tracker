@@ -1,0 +1,32 @@
+<DOCTYPE! html>
+<html land="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Progress Tracker</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul id="topnav">
+                <a href="/"><li>HOME</a></li>
+                <%# <br> %>
+                <a href="/users/account"><li>ACCOUNT</a></li>
+                <%# <br> %>
+                <%if logged_in?%>
+                <a href="/sessions/logout"><li>LOGOUT</a></li>
+                <%end%>
+            </ul>
+        </nav>
+    </header>
+
+
+ <%= yield %>
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,13 @@
+<% if flash.include?(:message) %>
+<%= flash[:message] %>
+<% end %>
+<br>
+Name: <%=@user.name%>
+<br>
+Email: <%=@user.email%>
+<br>
+<%# Password:  <%= (@user.password.length)> %>
+<br>
+<%# <%=@user%> 
+<a class="button" href="/users/<%=@user.id%>/edit">Edit Account Info</a>
+<a class="button" href="/sessions/logout">Log Out</a>
