@@ -1,28 +1,11 @@
+
 <h2>Workouts</h2> 
-<ul id="index">
+<%# make this html pretty %>
+<ul>
     <%@user.workouts.each do |workout|%>
     <li><a href="workouts/<%=workout.id%>"><%=workout.name%></a></li>
-        <ul>
-        <li>Date: <%=workout.date_printed%></li>
-        <%if workout.distance != nil%>
-            <li>Distance: <%=workout.distance%> miles</li>
-        <%end%>
-        <%if workout.time != nil%>
-            <li>Time: <%=workout.time%>
-        <%end%>
-        <%if workout.time_units != nil%>
-            <%=workout.time_units%>
-        <%end%></li>
-        <%if workout.reps != nil%>
-            <li>Reps: <%=workout.reps%></li> 
-        <%end%>
-        <%if workout.number_reps != nil%>
-            <li>Number of Reps: <%=workout.number_reps%></li> 
-        <%end%>
-        <%if workout.weight != nil%>
-            <li>Weight: <%=workout.weight%></li> lbs
-        <%end%>
-        </ul>
-
      <%end%> 
 </ul> 
+
+<a class="button" href="/workouts">Workouts</a>
+<a class="button" href="/">Home</a>

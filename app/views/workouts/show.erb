@@ -1,23 +1,71 @@
-<h2><%=@workout.name%></h2> 
-<ul>   
-        <li><%=@workout.date_printed%></li>
-        <%if @workout.distance != nil%>
-        <li>Distance: <%=@workout.distance%></li>
-        <%end%>
-        <%if @workout.time != nil%>
-        <li>Time: <%=@workout.time%><%#=@workout.time.units%>
-        <%end%><%if @workout.time_units != nil%>
-        <%=@workout.time_units%><%#=@workout.time.units%></li> 
-        <%end%>
-        <%if @workout.reps != nil%>
-        <li>Reps: <%=@workout.reps%></li> 
-        <%end%>
-        <%if @workout.number_reps != nil%>
-        <li>Number of Reps: <%=@workout.number_reps%></li> 
-        <%end%>
-        <%if @workout.weight != nil%>
-        <li>Weight: <%=@workout.weight%></li> 
-        <%end%>
-        </ul>
+<%# how to separate this to make it HTML pretty? spacing? %>
 
-</ul> 
+<div class="text-center">
+    <div class="text-xl">
+        <h2 class="font-bold text-3xl pt-5"><%=@workout.name%></h2> 
+        <br>
+        <a class="content-center pb-2 bg-gray-700 hover:border-gray-800 hover:bg-white hover:text-gray-700 text-white font-bold py-2 px-4 rounded" href="/workouts/<%=@workout.id%>/edit">Edit workout name</a>
+        <ul>
+            <%@routines.each do |routine| %>
+                <li><%=routine.name%></li>
+                    <ul>
+                        <%if routine.number != nil%>
+                            <li>Number: <%=routine.number%></li>
+                        <%end%>
+                        <%if routine.reps != nil%>
+                            <li>Reps: <%=routine.reps%></li>
+                        <%end%>
+                        <%if routine.distance != nil%>
+                            <li><%=routine.distance%> miles</li>
+                        <%end%>
+                        <%if routine.time != nil%>
+                            <li><%=routine.time%>
+                        <%end%>
+                        <%if routine.time_units != nil%>
+                            <%=routine.time_units%> </li>
+                        <%end%>
+                        <%if routine.weight != nil%>
+                            <li><%=routine.weight%> lbs </li>
+                        <%end%>
+                    </ul>
+                <a class="content-center pb-2 bg-gray-700 hover:border-gray-800 hover:bg-white hover:text-gray-700 text-white font-bold py-2 px-4 rounded" href="/routines/<%=routine.id%>/edit">Edit/Delete Routine</a>
+            <%end%>
+        </ul>
+    <br>
+<!--  This button can get added only if i resolve the issue of passing workout id to routines route or going back and forth bwtn controllers -->
+<a class="content-center pb-2 pt-10 bg-gray-700 hover:border-gray-800 hover:bg-white hover:text-gray-700 text-white font-bold py-2 px-4 rounded" href="/workouts/<%=@workout.id%>/routines">Add to your workout</a>
+
+<!-- 
+Add new workout type to <%=@workout.name%>:
+
+
+<form action="/workouts/<%=@workout.id%>" method="post">
+
+    Add new workout to your workout routine <%=@workout.name%>:
+    <ul>
+        <li>Name/Type: <input id="routine_name" type="text" name="routine[name]" required> (required)</li>
+        <li>Distance <input id="distance" type="integer" name="routine[distance]"> miles </li>
+        <li>Time: <input id="workout_time" type="integer" name="routine[time]"> seconds <input type="radio" name="routine[time_units]" value="seconds"> Min<input type="radio" name="routine[time_units]" value="minutes"> Hr<input type="radio"name="routine[time_units]" value="hours"> </li>
+        <li>Sets: <input id="reps" type="integer" name="routine[reps]"></li>
+        <li>Number:<input id="number" type="integer" name="routine[number]"></li>
+        <li> Weight: <input id="routine" type="integer" name="routine[weight]">lbs </li>
+        <input type="submit" value="Add to workout">
+    </ul>
+</form> 
+
+<!--
+<form method="post" action="/workouts/<%=@workout.id%>">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <input type="submit" value="Edit Workout">
+</form>
+-->
+<%# <a class="button" href="/workouts">Workouts</a> %>
+<%# <a class="button" href="/">Home</a> %>
+<br>
+<br>
+<form method="post" action="/workouts/<%=@workout.id%>">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" class="content-center p-3 pb-2 bg-gray-700 hover:border-gray-800 hover:bg-white hover:text-gray-700 text-white font-bold py-2 px-4 rounded" value="Delete Workout">
+</form>
+
+<%# Add this workout to days %>

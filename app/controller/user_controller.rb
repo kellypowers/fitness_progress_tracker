@@ -1,5 +1,9 @@
 require 'pry'
 require 'rack-flash'
+# Validate uniqueness of user login attribute (username or email).
+# Validate user input so bad data cannot be persisted to the database.
+#  Display validation failures to user with error messages.
+# Ensure that users can edit and delete only their own resources - not resources created by other users.
 class UserController < ApplicationController
     use Rack::Flash 
 
@@ -10,16 +14,17 @@ class UserController < ApplicationController
             erb :'/registrations/signup'
         end
     end
-
+ 
     post '/registrations' do
-        @user = User.new(params[:user])
-        if params[:user][:password] == params[:password2]
-            @user.save
-            session[:user_id] = @user.id
-            redirect "/users/home"
-        else
-            flash[:message] = "Passwords don't match"
-            redirect "/registrations/signup"
+            @user = User.new(params[:user])
+            if params[:user][:password] == params[:password2]
+                @user.save
+                session[:user_id] = @user.id
+                redirect "/users/home"
+            else
+                flash[:message] = "Passwords don't match"
+                redirect "/registrations/signup"
+            # end
         end
     end
 
@@ -27,21 +32,11 @@ class UserController < ApplicationController
         if logged_in? 
             redirect to "/users/home"
         elsif @user = User.find_by(:email => params[:email])
-        #@user = User.find_by(:username => params[:username])
             if user && user.authenticate(params[:password])
                 session[:user_id] = user.id 
                 redirect "/users/home"
             end
         else
-        # else
-        #     redirect "/failure"
-        # end
-        # # the line of code below render the view page in app/views/sessions/login.erb
-        # erb :'sessions/login'
-        #binding.pry
-        # if logged_in? 
-        #     redirect to "/users/home"
-        # else
             erb :"/sessions/login"
         end
     end
@@ -66,7 +61,7 @@ class UserController < ApplicationController
         if logged_in?
             #binding.pry
             @user = User.find(session[:user_id])
-            @goals = @user.goals 
+            # @goals = @user.goals 
             #@workouts = Workout.all
             @workouts = @user.workouts
             #binding.pry
@@ -107,22 +102,22 @@ class UserController < ApplicationController
     end
 
     patch '/users/:id' do 
-        user = User.find(session[:user_id])
+        @user = User.find(session[:user_id])
         #binding.pry 
         # if current_user.id === params[:id].to_i
-        if !user.authenticate(params[:password])
+        if !@user.authenticate(params[:password])
             flash[:message] = "Please type in your current password to make changes."
-            redirect to "/users/#{user.id}/edit"
+            redirect to "/users/#{@user.id}/edit"
         else
-            user.password = params[:password]
+            @user.password = params[:password]
             if !params["new_password"].empty?
                 if params["new_password"] == params["new_password2"]
                     #@user.update(password: params[:new_password])
-                    user.password = params[:new_password]
-                    user.save
+                    @user.password = params[:new_password]
+                    @user.save
                 else 
                     flash[:message] = "New passwords do not match."
-                    #redirect "/users/#{@user.id}/edit"
+                    redirect "/users/#{@user.id}/edit"
                 end
             end
 
@@ -142,15 +137,6 @@ class UserController < ApplicationController
     end
 
 
-
-    # get "/success" do
-    #     if logged_in?
-    #         erb :'/users/home'
-    #     else
-    #         flash[:message] = "Invalid email/password. Please try again."
-    #         redirect "/login"
-    #     end
-    # end
 
     delete "/users/:id" do 
         @user = User.find(session[:user_id])

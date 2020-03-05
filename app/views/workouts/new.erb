@@ -1,46 +1,21 @@
-<h2>Create New Workout</h2>
 
-<form action="/workouts" method="post">
-Type of workout: <br>
-<%(!Workout.all.empty?) ?  "Select from previous workouts \n or \n" : nil %>
-<br>
-<%workouts_array = []%>
-<%@workouts.each do |workout|%>
-<%workouts_array << workout.name%>
-<%end%>
-
- <%workouts_array.uniq!%>
- <%workouts_array.each do |each|%>
-    <%=each%> <input type="checkbox" name="user[workout_ids][]">
-    <%# <input id="workout_<%=workout.id" type="checkbox" name="user[workout_ids][]" value="<%=workout.id"><br> %> 
-<%end%>
-    <br>
-
-    <label for="workout_name">Add new workout type</label>
-    <input id="workout_name" type="text" name="workout[name]" required>
-<br>
-    <label for="workout_date">Workout Date</label>
-    <input id="workout_date" type="date" name="workout[date]" required>
-<br>
-    <label for="workout_distance">Distance</label>
-    <input id="workout_distance" type="texintegert" name="workout[distance]"> miles
-<br>
-    <label for="workout_time">Time:</label>
-    <input id="workout_time" type="integer" name="workout[time]"> Min<input type="radio" name="workout[time_units]" value="minutes"> Hr<input type="radio"name="workout[time_units]" value="hour(s)"> 
-<br>
-    <label for="workout_reps">Reps</label>
-    <input id="workout_reps" type="integer" name="workout[reps]">
-<br>
-    <label for="workout_number_reps">Number of reps</label>
-    <input id="workout_number_reps" type="integer" name="workout[number_reps]">
-<br>
-    <label for="workout_weight">Weight:</label>
-    <input id="workout_weight" type="integer" name="workout[weight]">lbs
-<br>
-    <br>
-
-    <input type="submit" value="Create New Workout">
-</form> 
-
-<a class="button" href="/workouts">Workouts</a>
-<a class="button" href="/">Home</a>
+<div class="text-center">
+    <div class="text-xl">
+        <h2 class="font-bold text-3xl pt-5">Create New Workout</h2>
+        <br>
+        <%# do i want a dropdown bar with basic templates? so lifting will have weights, running will have time and distance, then a dropdown selection for user to create his own? can i have user create his own field in case there is something i missed? %>
+        <%# "add" button to add routines to workout %>
+        Please name your workout:
+        <br>
+        <form action="/workouts" method="post">
+            Workout Name: <input type="text" name="workout[name]" placeholder="Name your workout">
+            <input class="content-center pb-2 bg-gray-700 hover:border-gray-800 hover:bg-white hover:text-gray-700 text-white font-bold py-2 px-4 rounded" type="submit" value="Add">
+        </form>
+    </div>
+</div>
+  
+<!--
+<div class="flex justify-center p-6">
+    <a href="/workouts" class="content-center pb-2 bg-gray-700 hover:border-gray-800 hover:bg-white hover:text-gray-700 text-white font-bold py-2 px-4 rounded" >Add New Workout</a>
+</div>
+-->

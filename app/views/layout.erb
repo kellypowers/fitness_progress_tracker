@@ -1,35 +1,63 @@
+
 <DOCTYPE! html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="src/style.css">
+<link rel="stylesheet" href="/style2.css">
   <title>Fitness Progress Tracker</title>
-   <%# <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> %>
-   <link rel="stylesheet" type="text/css" href="../public/stylesheets/style.css">
+   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="/stylesheets/style1.css"> 
+  
 </head>
 
-<body>
-<%# <img class="mountain" src="./public//mountain.svg" alt="mountaintop"> %>
-    <header>
-    <h1>Fitness Progress Tracker</h1>
-        <nav>
-            <ul id="sidenav">
-                <a href="/users/home"><li>HOME</a></li>
-                <%# <br> %>
-                <a href="/users/account"><li>ACCOUNT</a></li>
-                <%# <br> %>
-                <%if logged_in?%>
-                <a href="/sessions/logout"><li>LOGOUT</a></li>
-                <a href="/workouts/new"><li>ADD NEW WORKOUT</a></li>
-                <a href="/goals/index"><li>GOALS</a></li>
-                <%end%>
-            </ul>
-        </nav>
-    </header>
+<body class="bg-gray-200">    
 
-<div class="yielded">
- <%= yield %>
-</div>
+
+<header>
+    <nav class="flex items-center justify-between flex-wrap bg-gray-700 p-6">
+    <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <img class="fill-current h-8 w-8 mr-2"  src="/img/mountain.svg"/>
+    <span class="font-semibold text-xl tracking-tight">Flatiron Fitness</span>
+  </div>
+  <div class="block lg:hidden">
+    
+  </div>
+        <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+            <ul class="flex">
+            <%if logged_in?%>
+                <li class="mr-3">
+                    <a class="inline-block border border-white rounded hover:border-gray-200 text-white hover:text-purple-500 hover:bg-gray-200 py-1 px-3" href="/users/home">Home</a>
+                </li>
+                <li class="mr-3">
+                    <a class="inline-block border border-white rounded hover:border-gray-200 text-white hover:text-purple-500 hover:bg-gray-200 py-1 px-3" href="/users/account">Account</a>
+                </li>
+                </ul>
+                <div class="flex items-center">
+                    <a href="/sessions/logout" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-purple-500 hover:bg-white mt-4 lg:mt-0">Log Out</a>
+                </div>
+            <%else%>
+            <ul>
+                <li class="mr-3">
+                    <a class="inline-block border border-white rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-1 px-3" href="/sessions/signup">Sign Up</a>
+                </li>
+                </ul>
+                <div>
+                    <a href="/sessions/login" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-purple-500 hover:bg-white mt-4 lg:mt-0">Log In</a>
+                </div>
+            
+            <%end%>
+            
+        </div>
+    </nav>
+
+</header>
+
+    <div class="container">
+        <%= yield %>
+    </div>
+
 </body>
 
 

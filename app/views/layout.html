@@ -1,0 +1,71 @@
+<!-- this whole page is just a codealong with a tailwind tutorial -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <title>Flatiron Fitness Tracker</title>
+</head>
+    <body class="bg-blue-700">
+    <!-- Button component -->
+        <div class="container">
+            
+    
+            <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded">Button</button>
+            <button class="btn btn-blue">Find Groups</button>
+
+            <!-- alert component -->
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative my-5" role="alert">
+                <strong class="font-bold">Alert!</strong>
+                <span class="block sm:inline">Please Update your password</span> <!-- sm:inline ... block is default, sm, lg, for any screen size small and up want it inline, but default block so mobile will be block-->
+            </div>
+        </div>
+
+        <!-- Card Component -->
+        <div class="max-w-sm mx-auto flex p-6 bg-white rounded-lg shadow-xl">
+            <div class="flex-shrink-0">
+                <img src="img/mountain.svg" alt="" class="h-12 w-12">
+            </div>
+            <div class="ml-6 pt-1">
+                <h4 class="text-xl text-gray-900">Media</h4>
+                <p class="text-base text-gray-600">You have a new message</p>
+            </div>
+        </div>
+        <!-- card column -->
+        <div class="container mt-5">
+            <!-- flex on med screens and up .. responsive.. go horizontal but smaller than med will not be flex will be vertical  responsive layours-->
+            <div class="md:flex">
+                <div class="flex-1 text-gray-700 text-center bg-gray-400 px-5 py-5 m-2 rounded">
+                    <div class="lg:flex lg:items-center">
+                        <!-- large screen want side by side, anythign less on top of each other.  -->
+                        <div class="lg:flex-shrink-0">
+                            <!-- large screen 64, anything under large 100% -->
+                            <img class="rounded-lg lg:w-64" src="img/mountain.svg" alt="">
+                        </div>
+                        <div class="mt-4 lg:mt-0 lg:ml-6">
+                            <div class="uppercase tracking-wide text-sm text-indigo-600 font-bold">
+                            Networking
+                            </div>
+                        <a href="#" class="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline"> Find connections</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-1 text-gray-700 text-center bg-gray-400 px-5 py-5 m-2 rounded">
+                <div class="lg:flex lg:items-center">
+                    <div class="lg:flex-shrink-0">
+                        <img class="rounded-lg lg:w-64" src="./mission.svg" alt="">
+                    </div>
+                    <div class="mt-4 lg:mt-0 lg:ml-6">
+                        <div class="uppercase tracking-wide text-sm text-indigo-600 font-bold">
+                            Marketing
+                        </div>
+                        <a href="#" class="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline"> Find customers</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

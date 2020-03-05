@@ -1,0 +1,26 @@
+<%# how to separate this to make it HTML pretty? spacing? %>
+<h2><%=@workout.name%></h2> 
+<ul>   
+        <li><%=@workout.date_printed%></li>
+                <%if @workout.distance != nil%>
+                        <li>Distance: <%=@workout.distance%></li>
+                <%end%>
+
+                <%if @workout.time != nil%>
+                        <li>Time: <%=@workout.time%>
+                <%end%>
+                <%if @workout.time_units != nil%>
+                        <%=@workout.time_units%></li> 
+                <%end%>
+                <%if @workout.reps != nil%>
+                        <li>Reps: <%=@workout.reps%></li> 
+                <%end%>
+                <%if @workout.number_reps != nil%>
+                        <li>Number of Reps: <%=@workout.number_reps%></li> 
+                <%end%>
+                <%if @workout.weight != nil%>
+                        <li>Weight: <%=@workout.weight%></li> 
+                <%end%>
+        </ul>
+
+</ul> 

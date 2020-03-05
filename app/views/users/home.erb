@@ -1,17 +1,14 @@
-<%=@user.name%>'s Workouts and Goals
-<br>
-<%# <a href="/sessions/logout">Log Out</a> %>
-<label id="workouts">Workouts:</label>
+
+
+<div class="text-center">
+    <h2> <%=@user.name%>'s Workouts </h2>
     <ul>
         <%@workouts.each do |workout|%>
-            <li><a href="/workouts/<%=workout.id%>"><%=workout.name%>  <%=workout.date_printed%></a></li>
-        <%end%>
-
-    </ul> 
-<label id="goals">Goals:</label>
-     <ul> 
-        <%@goals.each do |goal|%>
-            <li><a href="/goals/<%=goal.id%>"><%=goal.name%></a>
-            <%=goal.description%></li>
+            <li class="text-center"><a href="/workouts/<%=workout.id%>"><%=workout.name%> </a></li>
         <%end%>
     </ul> 
+</div>
+<div class="flex justify-center p-6">
+    <a href="/workouts/new" class="content-center pb-2 bg-gray-700 hover:border-gray-800 hover:bg-white hover:text-gray-700 text-white font-bold py-2 px-4 rounded" >Add New Workout</a>
+</div>
+           
