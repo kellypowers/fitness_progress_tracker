@@ -2,7 +2,7 @@
 source 'https://rubygems.org'
 ### gem 'rails'
 gem 'sinatra'
-gem 'activerecord', '~> 5.2'
+gem 'activerecord', '~> 6.1'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'rake'
 gem 'require_all' #=> Helps to load dependencies
